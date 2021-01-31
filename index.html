@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+    <style>
+        * {
+            margin: 0px;
+            color: #E91E63;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        .pageWrapper {
+            width: 460px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .outputViwer h2 {
+            margin: 8px;
+            padding: 8px;
+            background-color: #84FFFF;
+            border-radius: 10px;
+        }
+
+        .outputViwer div {
+            margin: 8px;
+            display: inline-block;
+        }
+
+        .outputViwer div h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .outputViwer div img {
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        .inputSelector {
+            box-sizing: border-box;
+            padding: 8px;
+            border: 4px solid #E1BEE7;
+            border-radius: 10px;
+            background-color: #ECEFF1;
+        }
+
+        .inputSelector h5 {
+            margin: 0 0 8px 0;
+        }
+
+        .inputSelector img {
+            display: inline-block;
+            width: 100px;
+            border: 8px solid #F8BBD0;
+            border-radius: 20px;
+        }
+
+        .inputSelector img:hover {
+            cursor: pointer;
+            border: 8px solid #FF5722;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="outputViwer">
+            <h2 id="winInfo">PLAY NOW!</h2>
+            <div>
+                <h3 id="playerInfo">You<br>----</h3>
+                <img src="player.png" id="playerPic">
+            </div>
+            <div>
+                <h3 id="botInfo">Bot<br>----</h3>
+                <img src="bot.png" id="botPic">
+            </div>
+        </div>
+        <div class="inputSelector">
+            <h5>Click to select</h5>
+            <img src="rock.jpg" onclick="giveRock()">
+            <img src="paper.jpg" onclick="givePaper()">
+            <img src="scissor.jpg" onclick="giveScissor()">
+        </div>
+    </div>
+</body>
+<script src="code.js"></script>
+
+</html>
