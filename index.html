@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+    <style>
+        * {
+            margin: 0px;
+            color: #E91E63;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        .pageWrapper {
+            width: 460px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .outputViewer h2 {
+            margin: 8px;
+            padding: 8px;
+            background-color: #84FFFF;
+            border-radius: 10px;
+        }
+
+        .outputViewer div {
+            margin: 8px;
+            display: inline-block;
+        }
+
+        .outputViewer div h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .outputViewer div img {
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        .inputSelector {
+            box-sizing: border-box;
+            padding: 8px;
+            border: 4px solid #E1BEE7;
+            border-radius: 10px;
+            background-color: #ECEFF1;
+        }
+
+        .inputSelector h5 {
+            margin: 0 0 8px 0;
+        }
+
+        .inputSelector img {
+            display: inline-block;
+            width: 100px;
+            border: 8px solid #F8BBD0;
+            border-radius: 20px;
+        }
+
+        .inputSelector img:hover {
+            cursor: pointer;
+            border: 8px solid #FF5722;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="outputViewer">
+            <h2 id="winInfo">PLAY NOW!</h2>
+            <div>
+                <h3 id="playerInfo">You<br>----</h3>
+                <img src="images/player.png" id="playerPic">
+            </div>
+            <div>
+                <h3 id="botInfo">Bot<br>----</h3>
+                <img src="images/bot.png" id="botPic">
+            </div>
+        </div>
+        <div class="inputSelector">
+            <h5>Click to select</h5>
+            <img src="images/rock.jpg" onclick="giveRock()">
+            <img src="images/paper.jpg" onclick="givePaper()">
+            <img src="images/scissor.jpg" onclick="giveScissor()">
+        </div>
+    </div>
+</body>
+
+<script>
+
+    let playerPic = document.querySelector("#playerPic");
+    let botPic = document.querySelector("#botPic");
+    let playerText = document.querySelector("#playerInfo")
+    let botText = document.querySelector("#botInfo")
+    let resultText = document.querySelector("#winInfo");
+    let playerScore = 0;
+    let botScore = 0;
+
+    function givePaper() { game(0) };
+    function giveScissor() { game(1) };
+    function giveRock() { game(2) };
+
+    function game(playerInput) {
+        const botInput = Math.floor(Math.random() * 3);
+        let result;
+
+        if (playerInput == botInput) {
+            result = "Draw";
+        } else if (playerInput == 0 && botInput == 2) {
+            result = "You win!";
+            playerScore++;
+        } else if (playerInput == 1 && botInput == 0) {
+            result = "You win!";
+            playerScore++;
+        } else if (playerInput == 2 && botInput == 1) {
+            result = "You win!";
+            playerScore++;
+        } else {
+            result = "You lose";
+            botScore++;
+        }
+
+        show(playerInput, botInput, result)
+    }
+
+    function show(player, bot, info) {
+
+        switch (player) {
+            case 0:
+                playerPic.src = "images/paper.jpg";
+                playerText.innerText = `You : ${playerScore}\nPaper`;
+                break;
+            case 1:
+                playerPic.src = "images/scissor.jpg";
+                playerText.innerText = `You : ${playerScore}\nScissor`;
+                break;
+            case 2:
+                playerPic.src = "images/rock.jpg";
+                playerText.innerText = `You : ${playerScore}\nRock`;
+                break;
+            default:
+                playerPic.src = "images/player.png";
+                playerText.innerText = `You : ${playerScore}\nUnknown`;
+                break;
+        }
+
+        switch (bot) {
+            case 0:
+                botPic.src = "images/paper.jpg";
+                botText.innerText = `Bot : ${botScore}\nPaper`;
+                break;
+            case 1:
+                botPic.src = "images/scissor.jpg";
+                botText.innerText = `Bot : ${botScore}\nScissor`;
+                break;
+            case 2:
+                botPic.src = "images/rock.jpg";
+                botText.innerText = `Bot : ${botScore}\nRock`;
+                break;
+            default:
+                botPic.src = "images/bot.png";
+                botText.innerText = `Bot : ${botScore}\nUnknown`;
+                break;
+        }
+
+        playerPic.style.transform = "rotate(90deg) rotateY(180deg)"
+        botPic.style.transform = "rotate(270deg)"
+        resultText.innerText = info;
+    }
+
+</script>
+
+</html>
